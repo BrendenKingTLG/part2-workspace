@@ -9,6 +9,8 @@
 package com.javatunes.product;
 
 import static org.junit.Assert.*;
+
+import com.javatunes.billing.TaxCalculator;
 import org.junit.Before;
 import org.junit.Test;
 import com.javatunes.billing.Location;
@@ -46,16 +48,22 @@ public class OrderTaxTest {
    */
   @Test
   public void testTaxOnlineOrder() {
-
+    Order order1 = new Order("online-1", Location.ONLINE);
+    order1.processCart(cart1);
+    assertEquals(0, order1.getTax(), 0.001);
   }
   
   @Test
   public void testTaxEuropeOrder() {
-
+    Order order1 = new Order("europe-1", Location.EUROPE);
+    order1.processCart(cart1);
+    assertEquals(3.4, order1.getTax(), 0.001);
   }
   
   @Test
   public void testTaxUSAOrder() {
-
+    Order order1 = new Order("usa-1", Location.USA);
+    order1.processCart(cart1);
+    assertEquals(0, order1.getTax(), 0.001);
   }
 }
