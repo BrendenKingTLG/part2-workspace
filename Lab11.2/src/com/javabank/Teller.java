@@ -7,6 +7,9 @@
  */
 package com.javabank;
 
+import com.javabank.Account;
+import com.javabank.Rand;
+
 public class Teller
 extends Thread {
   private Account acct1;
@@ -30,7 +33,6 @@ extends Thread {
     int amount = Rand.getRandHundred(100, 200);
     
     System.out.println(getName() + ": Transfer " + amount + " from " + acct1.getName() + " to " + acct2.getName());
-    acct1.withdraw(amount);
-    acct2.deposit(amount);
+    acct1.transferTo(acct2, amount);
   }
 }
